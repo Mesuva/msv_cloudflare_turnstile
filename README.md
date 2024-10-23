@@ -1,5 +1,5 @@
 # Captcha by Cloudflare Turnstile, for Concrete CMS
-A free, accessible and GDRP complient CAPTCHA alternative
+A free, accessible and GDRP compliant CAPTCHA alternative
 
 A drop-in replacement CAPTCHA, provided by the [Cloudflare Turnstile service](https://www.cloudflare.com/products/turnstile/).
 
