@@ -60,7 +60,7 @@ class TurnstileController extends AbstractController implements CaptchaInterface
             return false;
         }
         $request = app()->make(\Concrete\Core\Http\Request::class);
-        $remote_addr = $request->server->get('REMOTE_ADDR');
+        $remote_addr = method_exists($request, 'getClientIp') ? $request->getClientIp() : $request->server->get('REMOTE_ADDR');
         $cf_url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
         $token = $request->request->get('cf-turnstile-response');
 
