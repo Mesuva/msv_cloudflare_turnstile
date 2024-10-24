@@ -11,7 +11,7 @@ class Controller extends Package
     protected $pkgVersion = '1.0.1';
 
     protected $pkgAutoloaderRegistries = [
-        'src/Captcha' => '\Concrete\Package\MsvCloudflareTurnstile\Captcha',
+        'src/Captcha' => 'Concrete\Package\MsvCloudflareTurnstile\Captcha',
     ];
 
     public function getPackageName()
