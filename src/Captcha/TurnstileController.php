@@ -37,7 +37,7 @@ class TurnstileController extends AbstractController implements CaptchaInterface
             $size = $config->get('msv_cloudflare_turnstile.turnstile.size', 'norma');
             $theme = $config->get('msv_cloudflare_turnstile.turnstile.theme', 'auto');
             $appearance = $config->get('msv_cloudflare_turnstile.turnstile.appearance', 'always');
-            echo '<div class="cf-turnstile" data-sitekey="' . $sitekey . '" data-size="' . $size . '"  data-theme="' . $theme . '" data-appearance="' . $appearance . '"   ></div>';
+            echo '<div class="cf-turnstile" data-sitekey="' . $sitekey . '" data-size="' . $size . '"  data-theme="' . $theme . '" data-appearance="' . $appearance . '"></div>';
         }
     }
 
