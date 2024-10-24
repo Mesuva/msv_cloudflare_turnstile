@@ -1,0 +1,22 @@
+{
+    "name": "mesuva/msv_cloudflare_turnstile",
+    "description": "Captcha by Cloudflare Turnstile, for Concrete CMS",
+    "type": "concrete5-package",
+    "keywords": [
+        "concretecms",
+        "concrete",
+        "concrete5",
+        "captcha",
+        "cloudflare",
+        "turnstile"
+    ],
+    "homepage": "https://github.com/Mesuva/msv_cloudflare_turnstile",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/Mesuva/msv_cloudflare_turnstile/issues",
+        "source": "https://github.com/Mesuva/msv_cloudflare_turnstile"
+    },
+    "require": {
+        "concrete5/core": ">=8.5"
+    }
+}
