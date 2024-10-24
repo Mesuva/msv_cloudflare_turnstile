@@ -108,17 +108,19 @@ class TurnstileController extends AbstractController implements CaptchaInterface
     public function saveOptions($data)
     {
         $data = (is_array($data) ? $data : []) + [
-                'site_key' => '',
-                'secret_key' => '',
-            ];
+            'site_key' => '',
+            'secret_key' => '',
+            'size' => '',
+            'theme' => '',
+            'appearance' => '',
+            'log_failed' => false,
+        ];
         $config = $this->app->make('config');
-        $config->save('msv_cloudflare_turnstile.turnstile.site_key', (string)$data['site_key']);
-        $config->save('msv_cloudflare_turnstile.turnstile.secret_key', (string)$data['secret_key']);
-        $config->save('msv_cloudflare_turnstile.turnstile.size', (string)$data['size']);
-        $config->save('msv_cloudflare_turnstile.turnstile.theme', (string)$data['theme']);
-        $config->save('msv_cloudflare_turnstile.turnstile.appearance', (string)$data['appearance']);
-        $config->save('msv_cloudflare_turnstile.turnstile.log_failed', isset($data['log_failed']) ? '1' : '0');
-
-        $config->save('msv_cloudflare_turnstile.turnstile', $data);
+        $config->save('msv_cloudflare_turnstile.turnstile.site_key', (string) $data['site_key']);
+        $config->save('msv_cloudflare_turnstile.turnstile.secret_key', (string) $data['secret_key']);
+        $config->save('msv_cloudflare_turnstile.turnstile.size', (string) $data['size']);
+        $config->save('msv_cloudflare_turnstile.turnstile.theme', (string) $data['theme']);
+        $config->save('msv_cloudflare_turnstile.turnstile.appearance', (string) $data['appearance']);
+        $config->save('msv_cloudflare_turnstile.turnstile.log_failed', filter_var($data['log_failed'], FILTER_VALIDATE_BOOLEAN));
     }
 }
