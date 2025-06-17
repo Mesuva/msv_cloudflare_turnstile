@@ -1,3 +1,5 @@
+[![Checks](https://github.com/Mesuva/msv_cloudflare_turnstile/actions/workflows/checks.yml/badge.svg)](https://github.com/Mesuva/msv_cloudflare_turnstile/actions/workflows/checks.yml)
+
 # Captcha by Cloudflare Turnstile, for Concrete CMS
 A free, accessible and GDRP compliant CAPTCHA alternative
 
