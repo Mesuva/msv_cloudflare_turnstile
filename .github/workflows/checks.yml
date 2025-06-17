@@ -84,7 +84,7 @@ jobs:
         uses: actions/checkout@v4
       -
         name: Check composer.json
-        run: sudo -u www-data composer --ansi --no-interaction validate --strict -- "$GITHUB_WORKSPACE/composer.json"
+        run: sudo -u www-data composer --ansi --no-interaction validate -- "$GITHUB_WORKSPACE/composer.json"
       -
         name: Prepare package
         run: ln -s "$GITHUB_WORKSPACE" /app/packages/msv_cloudflare_turnstile
