@@ -1,14 +1,18 @@
 name: Checks
 
 on:
-  pull_request:
   push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+  pull_request:
     branches:
       - main
 
 jobs:
 
-  check-syntax:
+  check-php-syntax:
     name: PHP ${{ matrix.php-version }} Syntax
     runs-on: ubuntu-latest
     strategy:
@@ -34,20 +38,53 @@ jobs:
         with:
           fail-on-warnings: true
 
+  check-development-leftovers:
+    name: Check Development Leftovers
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Search for debugger or xdebug_break
+        run: |
+          echo "Scanning for 'debugger' or 'xdebug_break'..."
+          matches=$(grep -Enr --include=\*.{js,php} '(^|[^a-zA-Z0-9_])(debugger|xdebug_break)\b' . || true)
+          if [[ -n "$matches" ]]; then
+            echo "Found the following matches:"
+            echo "$matches"
+            echo "::error::Development leftovers found in the codebase."
+            exit 1
+          else
+            echo "No development leftovers found."
+          fi
+
+
   check-install:
     name: Install on Concrete ${{ matrix.ccm-version }}
     runs-on: ubuntu-latest
     container: ghcr.io/concrete5-community/docker5:${{ matrix.ccm-version }}
+    needs:
+      - check-php-syntax
+      - check-development-leftovers
     strategy:
       matrix:
         ccm-version:
+          - 8.5.2
           - "8.5"
           - "9.0"
+          - "9.1"
+          - "9.2"
+          - "9.3"
+          - "9.4"
           - latest
     steps:
       -
         name: Checkout
         uses: actions/checkout@v4
+      -
+        name: Check composer.json
+        run: sudo -u www-data composer --ansi --no-interaction validate -- "$GITHUB_WORKSPACE/composer.json"
       -
         name: Prepare package
         run: ln -s "$GITHUB_WORKSPACE" /app/packages/msv_cloudflare_turnstile
